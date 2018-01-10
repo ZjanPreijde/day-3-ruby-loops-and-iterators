@@ -48,15 +48,80 @@ print_departments
 def user_select_department
   print "Please select the number of the department: "
   user_select=gets.chomp.to_i
-  return user_select
+  if user_select> 0 && user_select < 5
+    return user_select - 1, @departments[user_select - 1]
+  else
+    return false, false
+  end
+  # return user_select
 end
 
-dep_number=user_select_department
+dep_number, dep_symbol = user_select_department
 
-if dep_number >0 && dep_number <5
-  puts "Let's go shopping ;)"
+def show_products(department)
+  depproducts = @products[department]
+  counter = 0
+  puts "Products from this department are: "
+  depproducts.each do |product|
+    counter += 1
+    puts "#{counter}. #{product[:reference_number]} #{product[:name]} #{product[:price]} "
+  end
+  print_divider
 end
 
+def get_product(dep_symbol)
+  show_products(dep_symbol)
+  puts "Choose product "
+  return gets.chomp.to_i
+end
 
+def update_cart(upd_symbol, upd_prod_nr)
+  depproducts = @products[upd_symbol]
+  counter = 0
+  depproducts.each do |product|
+    counter += 1
+    if counter == upd_prod_nr
+      @shopping_cart << [ product[:name],product[:price] ]
+      puts "Product #{product[:name]} added to your cart"
+    end
+  end
+
+end
+
+def show_cart
+  # Show cart
+  cart_total = 0
+  if @shopping_cart.length > 0
+    print_divider
+    puts "Your shopping cart : "
+    @shopping_cart.each do |line|
+      puts "- #{line[0]}, price #{line[1]}"
+      cart_total += line[1]
+    end
+
+    # Show total
+    puts "Total amount #{cart_total}"
+  end
+  print_divider
+end
+
+if dep_number
+  # Department chosen
+  puts "Department #{dep_symbol} chosen"
+
+  # Department is chosen
+  loop do
+    show_cart
+    productnr = get_product(dep_symbol)
+    if productnr > 0
+      update_cart(dep_symbol, productnr)
+    else
+      break
+    end
+  end
+
+end
+
+show_cart
 
 puts "Was nice to see you, hope to see you soon!!"
