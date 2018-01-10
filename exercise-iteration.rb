@@ -1,7 +1,3 @@
-def ask(message, insist = 0, insist_message = "")
-  # When I have some time left over ;-)
-end
-
 def exercise_1
   puts "\nExercise (Array) .each (1) ..."
   fruits = ["apples", "oranges", "pears", "apricots"]
@@ -10,8 +6,9 @@ def exercise_1
     counter += 1
     puts "#{counter}) I love #{fruit}."
   end
+  puts "-" * 40
 end
-# exercise_1
+exercise_1
 
 def exercise_2
   puts "\nExercise (Array) .each (2) ..."
@@ -24,8 +21,9 @@ def exercise_2
   numbers.each do |number|
     puts "Number was: #{number}."
   end
+  puts "-" * 40
 end
-# exercise_2
+exercise_2
 
 def exercise_3
   puts "\nExercise (Array) .each_with_index ..."
@@ -38,8 +36,9 @@ def exercise_3
   numbers.each_with_index do |number, index|
     puts "Number #{number} was added at location #{index}."
   end
+  puts "-" * 40
 end
-# exercise_3
+exercise_3
 
 def exercise_4
   puts "\nExercise (Hash) .each Iterate of array of friends-hashes ..."
@@ -50,13 +49,6 @@ def exercise_4
 
   # Define array of friends,
   #   each friend is a hash with keys name, occupation, city
-  # For some reason putting ',' on new line before next hash
-  #   in stead of behind previous hash does not work
-  # friends = [
-  #   {name: "Peter", occupation: "eyologist", city: "Heiloo"}
-  #   ,{name: "Jenny", occupation: "volunteer", city: "Geleen"}
-  #   ,{name: "Donald", occupation: "cartoon character", city: "Duck City"}
-  # ]
   friends = [
     {name: "Peter", occupation: "eyologist", city: "Heiloo"},
     {name: "Jenny", occupation: "volunteer", city: "Geleen"},
@@ -68,6 +60,7 @@ def exercise_4
     # Symbol starts with :, can only end with : when assigning value
     puts "#{friend[:name]} lives in #{friend[:city]} and works as a #{friend[:occupation]}."
   end
+  puts "-" * 40
 end
 exercise_4
 
@@ -77,24 +70,35 @@ def exercise_5
     {name: "Peter", occupation: "eyologist", city: "Heiloo"}
 
   # Put screen keys
+  puts "Keys :"
   friend.each_key { |key| puts "Key #{key}." }
   # Put screen values
+  puts "Values :"
   friend.each_value { |value| puts "Value #{value}." }
+  puts "-" * 40
 end
 exercise_5
 
 def exercise_6
   puts "\nExercise (Hash) .select ..."
-  puts "Does not work yet"
   family = {
     uncles: ["bob", "joe", "steve"],
     sisters: ["jane", "jill", "beth"],
     brothers: ["frank","rob","david"],
     aunts: ["mary","sally","susan"]
   }
-  girly_names = family.select {| key , value | key == :sisters || or key == :aunts}
+  puts "Family : "
+  puts family
+  close_relatives = family.select {| key , value | key == :sisters || key == :brothers}
+  puts "Close relatives : "
+  puts close_relatives
+  # .values method, not introduced before
+  puts "Close relatives (.values): "
+  puts close_relatives.values
   # .flatten method, not introduced before
-  output = girly_names.values.flatten
-  puts output
+  puts "Close relatives (.values.flatten): "
+  puts close_relatives.values.flatten
+  puts "Calling .flatten does not seem to add anything usefull here"
+  puts "-" * 40
 end
 exercise_6
