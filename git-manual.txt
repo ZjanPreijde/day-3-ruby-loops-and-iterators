@@ -1,0 +1,33 @@
+
+>>> ONE TIME ONLY : Step 1. or step 2. first, when both done: step 3.
+1. Create git locally
+$ git init
+
+2. Create repository on GITHUB.COM
+-------
+-   go to user profile,
+-   go to Tab Repositories,
+-   click button 'New'
+-   enter repository name (lowercase 'kebab-case')
+-   uncheck 'Initialize this repository with README.MD'
+Now a repository is made with <username>/<repositoryname>
+-   e.g. ZjanPreijde/my-repository
+
+3. Link local git to Github repository  (! after step 1. AND step 2. !)
+$ git remote add origin git@github.com:<username>/<repository-name>.git
+-  e.g. git remote add origin git@github.com:ZjanPreijde/my-repository.git
+<<< ONE TIME ONLY
+------
+
+
+>>> Keeping everything up to date
+Add to local .git
+$ git add .
+
+Commit to local bucket
+$ git commit -m "Update description"
+- Description updated only for files updated in local bucket
+
+Push COMMITTED changes to the github.
+$ git push -u origin master
+<<<<
